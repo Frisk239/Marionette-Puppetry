@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+
+{% block title %}文化长廊 - 闽南木偶戏历史文化{% endblock %}
+
+{% block content %}
+<div class="culture-container">
+    <div class="page-header">
+        <h1 class="page-title">文化长廊</h1>
+        <p class="page-subtitle">穿越千年历史，感受闽南木偶戏的文化魅力</p>
+    </div>
+
+    <!-- 历史发展时间线 -->
+    <div class="module-card">
+        <div class="module-header">
+            <h2>历史发展时间线</h2>
+        </div>
+        <div class="module-content">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">唐代</div>
+                    <div class="timeline-content">
+                        <h3>起源时期</h3>
+                        <p>木偶戏起源于唐代，最初用于宗教仪式和宫廷娱乐，后逐渐传入民间。这一时期的木偶戏主要以简单的提线木偶为主，表演形式相对单一。</p>
+                        <img src="{{ url_for('static', filename='images/culture/tang-dynasty.jpg') }}" alt="唐代木偶戏" class="timeline-image">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">宋元</div>
+                    <div class="timeline-content">
+                        <h3>兴盛发展</h3>
+                        <p>宋元时期，木偶戏在闽南地区广泛传播，形成了独特的地方特色。布袋木偶开始兴起，表演技艺日趋成熟，出现了专业的戏班。</p>
+                        <img src="{{ url_for('static', filename='images/culture/song-dynasty.jpg') }}" alt="宋代木偶戏" class="timeline-image">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">明清</div>
+                    <div class="timeline-content">
+                        <h3>技艺成熟</h3>
+                        <p>明清时期，木偶戏技艺日趋成熟，出现了许多专业戏班和著名艺人。表演形式更加丰富，剧目内容更加多样，成为民间重要的娱乐方式。</p>
+                        <img src="{{ url_for('static', filename='images/culture/ming-dynasty.jpg') }}" alt="明代木偶戏" class="timeline-image">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">现代</div>
+                    <div class="timeline-content">
+                        <h3>传承创新</h3>
+                        <p>现代木偶戏在传承传统技艺的同时，融入现代元素，焕发新的生命力。通过数字化手段和现代舞台技术，让传统艺术焕发新光彩。</p>
+                        <img src="{{ url_for('static', filename='images/culture/modern-puppet.jpg') }}" alt="现代木偶戏" class="timeline-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 制作工艺 -->
+    <div class="module-card">
+        <div class="module-header">
+            <h2>制作工艺</h2>
+        </div>
+        <div class="module-content">
+            <div class="craft-grid">
+                <div class="craft-item">
+                    <img src="{{ url_for('static', filename='images/culture/wood-selection.jpg') }}" alt="选材" class="craft-image">
+                    <h3>精选材料</h3>
+                    <p>选用优质樟木或楠木，要求木质细腻、纹理清晰、不易开裂变形。每一块木材都经过严格筛选，确保品质上乘。</p>
+                </div>
+                
+                <div class="craft-item">
+                    <img src="{{ url_for('static', filename='images/culture/carving.jpg') }}" alt="雕刻" class="craft-image">
+                    <h3>精细雕刻</h3>
+                    <p>传统手工雕刻技艺，注重人物神态和细节表现。每一刀都凝聚着匠人的心血，展现精湛的雕刻工艺。</p>
+                </div>
+                
+                <div class="craft-item">
+                    <img src="{{ url_for('static', filename='images/culture/painting.jpg') }}" alt="彩绘" class="craft-image">
+                    <h3>传统彩绘</h3>
+                    <p>使用天然矿物颜料，色彩鲜艳持久，具有浓郁的传统文化特色。每一笔都经过精心设计，展现人物性格。</p>
+                </div>
+                
+                <div class="craft-item">
+                    <img src="{{ url_for('static', filename='images/culture/assembly.jpg') }}" alt="组装" class="craft-image">
+                    <h3>精密组装</h3>
+                    <p>精密组装各个关节，确保动作灵活自然。每一个连接点都经过反复调试，保证表演时的流畅性。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 表演技艺 -->
+    <div class="module-card">
+        <div class="module-header">
+            <h2>表演技艺</h2>
+        </div>
+        <div class="module-content">
+            <div class="performance-content">
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <h3>手指技巧</h3>
+                        <p>通过手指的灵活运动控制木偶的各个关节，实现精细动作。每一个动作都需要长期的练习和精湛的技巧。</p>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h3>说唱艺术</h3>
+                        <p>配合木偶动作进行说唱，一人分饰多角，声情并茂。需要深厚的语言功底和丰富的表演经验。</p>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h3>音乐配合</h3>
+                        <p>与南管、北管等传统音乐完美结合，营造独特的艺术氛围。音乐与动作的完美同步是表演成功的关键。</p>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h3>剧情演绎</h3>
+                        <p>通过木偶表演传统故事，传承历史文化。每一个剧目都承载着深厚的文化内涵和历史记忆。</p>
+                    </div>
+                </div>
+                
+                <div class="performance-demo">
+                    <h3>技艺演示</h3>
+                    <div class="demo-video">
+                        <video controls poster="{{ url_for('static', filename='images/culture/video-poster.jpg') }}" style="width: 100%; border-radius: 15px;">
+                            <source src="{{ url_for('static', filename='videos/performance-demo.mp4') }}" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 名家大师 -->
+    <div class="module-card">
+        <div class="module-header">
+            <h2>名家大师</h2>
+        </div>
+        <div class="module-content">
+            <div class="masters-grid">
+                <div class="master-card">
+                    <img src="{{ url_for('static', filename='images/culture/master-li.jpg') }}" alt="李天禄" class="master-image">
+                    <h3>李天禄</h3>
+                    <p class="master-title">台湾布袋戏国宝级大师</p>
+                    <p>被誉为"布袋戏泰斗"，一生致力于木偶戏艺术的传承与发展。其表演技艺精湛，深受观众喜爱。</p>
+                    <div class="master-achievements">
+                        <span>代表作：《水浒传》</span>
+                        <span>荣誉：民族艺术薪传奖</span>
+                        <span>传承：弟子遍布海内外</span>
+                    </div>
+                </div>
+                
+                <div class="master-card">
+                    <img src="{{ url_for('static', filename='images/culture/master-chen.jpg') }}" alt="陈锡煌" class="master-image">
+                    <h3>陈锡煌</h3>
+                    <p class="master-title">闽南木偶戏传承人</p>
+                    <p>国家级非物质文化遗产代表性传承人，技艺精湛，为木偶戏的传承做出了重要贡献。</p>
+                    <div class="master-achievements">
+                        <span>代表作：《三国演义》</span>
+                        <span>荣誉：国家级非遗传承人</span>
+                        <span>贡献：培养众多传承人</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 经典剧目 -->
+    <div class="module-card">
+        <div class="module-header">
+            <h2>经典剧目</h2>
+        </div>
+        <div class="module-content">
+            <div class="stories-grid">
+                <div class="story-card">
+                    <img src="{{ url_for('static', filename='images/culture/story-watermargin.jpg') }}" alt="水浒传" class="story-image">
+                    <h3>水浒传</h3>
+                    <p>梁山好汉的忠义故事，展现古代英雄气概。通过木偶戏的形式，生动再现108位好汉的传奇故事。</p>
+                    <div class="story-tags">
+                        <span>忠义</span>
+                        <span>英雄</span>
+                        <span>传统</span>
+                        <span>传奇</span>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <img src="{{ url_for('static', filename='images/culture/story-threekingdoms.jpg') }}" alt="三国演义" class="story-image">
+                    <h3>三国演义</h3>
+                    <p>三国时期的英雄传奇，智慧与勇气的较量。通过精湛的木偶表演，展现三国英雄的智谋与勇气。</p>
+                    <div class="story-tags">
+                        <span>智慧</span>
+                        <span>战争</span>
+                        <span>历史</span>
+                        <span>谋略</span>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <img src="{{ url_for('static', filename='images/culture/story-journeywest.jpg') }}" alt="西游记" class="story-image">
+                    <h3>西游记</h3>
+                    <p>唐僧师徒西天取经的神魔故事。通过木偶戏的形式，展现孙悟空等经典角色的神奇冒险。</p>
+                    <div class="story-tags">
+                        <span>神话</span>
+                        <span>冒险</span>
+                        <span>取经</span>
+                        <span>奇幻</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 文化意义 -->
+    <div class="module-card">
+        <div class="module-header">
+            <h2>文化意义</h2>
+        </div>
+        <div class="module-content">
+            <div class="significance-content">
+                <div class="significance-text">
+                    <h3>非物质文化遗产</h3>
+                    <p>闽南木偶戏于2006年被列入第一批国家级非物质文化遗产名录，是中华文化的重要组成部分。它不仅是一种表演艺术，更是中华民族智慧的结晶。</p>
+                    
+                    <h3>文化传承</h3>
+                    <p>承载着闽南地区的历史记忆和文化认同，是连接过去与未来的文化桥梁。通过代代相传，保持了文化的连续性和完整性。</p>
+                    
+                    <h3>艺术价值</h3>
+                    <p>集雕刻、绘画、音乐、戏剧于一体的综合艺术形式，具有极高的艺术价值。每一个木偶都是艺术品，每一次表演都是艺术的盛宴。</p>
+                    
+                    <h3>社会功能</h3>
+                    <p>在传统节日和民俗活动中扮演重要角色，增强社区凝聚力。通过表演传统故事，传承道德观念和文化价值。</p>
+                </div>
+                
+                <div class="significance-image">
+                    <img src="{{ url_for('static', filename='images/culture/cultural-significance.jpg') }}" alt="文化意义">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // 高级动画和交互效果
+    document.addEventListener('DOMContentLoaded', function() {
+        // 创建滚动进度条
+        const scrollProgress = document.createElement('div');
+        scrollProgress.className = 'scroll-progress';
+        document.body.appendChild(scrollProgress);
+
+        // 时间线动画增强
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const animatedElements = document.querySelectorAll('.craft-item, .master-card, .story-card, .skill-item');
+        
+        // 创建观察器
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // 观察所有需要动画的元素
+        [...timelineItems, ...animatedElements].forEach(item => {
+            observer.observe(item);
+        });
+        
+        // 滚动进度条
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.pageYOffset / (document.body.scrollHeight - window.innerHeight);
+            scrollProgress.style.transform = `scaleX(${scrollPercent})`;
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // 添加加载完成提示
+        setTimeout(() => {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--primary-red);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 1001;
+                animation: slideInRight 0.5s ease;
+            `;
+            notification.textContent = '文化长廊加载完成！';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }, 1000);
+    });
+    
+    // 添加CSS动画
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+{% endblock %}

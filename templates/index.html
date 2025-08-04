@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 闽南木偶戏数字博物馆{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">闽南木偶戏</h1>
+        <p class="hero-subtitle">千年非遗文化 · 指尖上的艺术</p>
+        <div class="hero-description">
+            <p>探索中国传统木偶戏的魅力，感受闽南文化的深厚底蕴</p>
+            <p>通过AI技术，让古老艺术焕发新生</p>
+        </div>
+        <div class="hero-buttons">
+            <a href="{{ url_for('interactive') }}" class="btn btn-primary">开始体验</a>
+            <a href="{{ url_for('culture') }}" class="btn btn-secondary">了解文化</a>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="puppet-showcase">
+            <img src="{{ url_for('static', filename='images/hero-puppet.jpg') }}" alt="闽南木偶戏" class="hero-image">
+            <div class="floating-elements">
+                <div class="element element-1"></div>
+                <div class="element element-2"></div>
+                <div class="element element-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="features-section">
+    <h2 class="section-title">探索功能</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎭</div>
+            <h3>虚拟戏台</h3>
+            <p>在线体验木偶戏表演，亲手操控虚拟木偶</p>
+            <a href="{{ url_for('interactive') }}" class="feature-link">立即体验 →</a>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>AI智慧问答</h3>
+            <p>与AI木偶大师对话，深入了解木偶戏文化</p>
+            <a href="{{ url_for('ai_chat') }}" class="feature-link">开始对话 →</a>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>文化长廊</h3>
+            <p>探索闽南木偶戏的历史渊源与技艺传承</p>
+            <a href="{{ url_for('culture') }}" class="feature-link">了解更多 →</a>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🎬</div>
+            <h3>影像资料</h3>
+            <p>欣赏珍贵的木偶戏表演视频与图片资料</p>
+            <a href="{{ url_for('gallery') }}" class="feature-link">观看影像 →</a>
+        </div>
+    </div>
+</section>
+
+<section class="culture-highlight">
+    <h2 class="section-title">文化特色</h2>
+    <div class="culture-grid">
+        <div class="culture-item">
+            <img src="{{ url_for('static', filename='images/craft.jpg') }}" alt="木偶制作技艺" class="culture-image">
+            <h3>精湛工艺</h3>
+            <p>传统木偶制作工艺，每一道工序都凝聚着匠人的智慧</p>
+        </div>
+        
+        <div class="culture-item">
+            <img src="{{ url_for('static', filename='images/performance.jpg') }}" alt="表演艺术" class="culture-image">
+            <h3>表演艺术</h3>
+            <p>独特的表演技巧，将传统故事演绎得栩栩如生</p>
+        </div>
+        
+        <div class="culture-item">
+            <img src="{{ url_for('static', filename='images/music.jpg') }}" alt="音乐伴奏" class="culture-image">
+            <h3>音乐伴奏</h3>
+            <p>南管、北管等传统音乐，为表演增添艺术魅力</p>
+        </div>
+    </div>
+</section>
+
+<section class="ai-showcase">
+    <h2 class="section-title">AI创新体验</h2>
+    <div class="ai-features">
+        <div class="ai-feature">
+            <h3>智能对话</h3>
+            <p>基于大语言模型的AI木偶大师，能够回答各种关于木偶戏的问题</p>
+        </div>
+        
+        <div class="ai-feature">
+            <h3>故事创作</h3>
+            <p>AI根据您的创意生成独特的木偶戏剧本</p>
+        </div>
+        
+        <div class="ai-feature">
+            <h3>动作模拟</h3>
+            <p>数字化还原传统木偶动作，让学习更加直观</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // 首页动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('.floating-elements .element');
+        elements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.5}s`;
+        });
+    });
+</script>
+{% endblock %}

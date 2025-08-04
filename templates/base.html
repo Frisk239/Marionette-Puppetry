@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}闽南木偶戏 - 非遗文化传承{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/traditional.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/culture.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-nav">
+            <div class="nav-container">
+                <h1 class="site-title">闽南木偶戏</h1>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('index') }}">首页</a></li>
+                    <li><a href="{{ url_for('culture') }}">文化长廊</a></li>
+                    <li><a href="{{ url_for('interactive') }}">虚拟戏台</a></li>
+                    <li><a href="{{ url_for('ai_chat') }}">智慧问答</a></li>
+                    <li><a href="{{ url_for('gallery') }}">影像资料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 闽南木偶戏文化传承项目 - 让传统艺术焕发新生命</p>
+            <p>联系邮箱: marionette@culture.com</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

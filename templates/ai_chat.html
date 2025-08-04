@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}智慧问答 - AI木偶戏大师{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <h1 class="page-title">智慧问答</h1>
+    <p class="page-subtitle">与AI木偶大师对话，探索闽南木偶戏的奥秘</p>
+    
+    <div class="chat-interface">
+        <div class="chat-header">
+            <div class="ai-avatar">
+                <img src="{{ url_for('static', filename='images/master-avatar.jpg') }}" alt="木偶大师" class="avatar-image">
+                <div class="status-indicator online"></div>
+            </div>
+            <div class="ai-info">
+                <h3>阿福伯 - 木偶戏大师</h3>
+                <p>拥有50年木偶戏经验，精通闽南传统文化</p>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-avatar">
+                    <img src="{{ url_for('static', filename='images/master-avatar.jpg') }}" alt="大师">
+                </div>
+                <div class="message-content">
+                    <p>您好！我是阿福伯，很高兴与您分享闽南木偶戏的文化。请问您想了解什么？</p>
+                    <span class="message-time">刚刚</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quick-questions">
+            <h4>快速提问</h4>
+            <div class="question-buttons">
+                <button class="quick-btn" onclick="sendQuickQuestion('闽南木偶戏起源于什么时候？')">起源时间</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('木偶戏有哪些表演技巧？')">表演技巧</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('有哪些经典剧目？')">经典剧目</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('如何学习木偶戏？')">学习方法</button>
+            </div>
+        </div>
+        
+        <div class="chat-input-area">
+            <div class="input-container">
+                <input type="text" id="messageInput" placeholder="请输入您的问题..." maxlength="500">
+                <button onclick="sendMessage()" class="send-btn">
+                    <span>发送</span>
+                </button>
+            </div>
+            <div class="input-hints">
+                <small>按Enter键发送消息，支持中文提问</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="knowledge-panel">
+        <h3>知识库</h3>
+        <div class="knowledge-categories">
+            <div class="category-card" onclick="filterKnowledge('历史')">
+                <h4>历史渊源</h4>
+                <p>探索木偶戏的起源与发展</p>
+            </div>
+            <div class="category-card" onclick="filterKnowledge('技艺')">
+                <h4>表演技艺</h4>
+                <p>学习传统表演技巧</p>
+            </div>
+            <div class="category-card" onclick="filterKnowledge('人物')">
+                <h4>名家大师</h4>
+                <p>了解著名木偶戏艺人</p>
+            </div>
+            <div class="category-card" onclick="filterKnowledge('剧目')">
+                <h4>经典剧目</h4>
+                <p>欣赏传统木偶戏剧目</p>
+            </div>
+        </div>
+        
+        <div class="knowledge-content" id="knowledgeContent">
+            <!-- 动态加载知识内容 -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ai-chat.js') }}"></script>
+{% endblock %}

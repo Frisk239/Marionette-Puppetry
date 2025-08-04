@@ -1,0 +1,778 @@
+/* 文化长廊终极美化设计 - 彻底解决单调问题 */
+
+/* 引入优雅字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-red: #c8102e;
+    --secondary-red: #a00d26;
+    --gold: #ffd700;
+    --light-gold: #fff8dc;
+    --dark-brown: #8b4513;
+    --ink-black: #2c2c2c;
+    --paper-white: #faf8f5;
+    --cream: #fdf6e3;
+    --warm-gray: #f5f5f0;
+    --shadow-light: rgba(0,0,0,0.08);
+    --shadow-medium: rgba(0,0,0,0.12);
+    --shadow-heavy: rgba(0,0,0,0.2);
+}
+
+/* 全局居中布局 */
+.culture-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--warm-gray) 100%);
+    min-height: 100vh;
+    font-family: 'Noto Serif SC', serif;
+}
+
+/* 页面标题区域 - 极致居中 */
+.page-header {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+    color: white;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.page-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #fff, var(--light-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-subtitle {
+    font-size: 1.6rem;
+    font-weight: 300;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* 模块化卡片 - 极致美化 */
+.module-card {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px var(--shadow-light);
+    margin: 3rem 2rem;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.module-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px var(--shadow-medium);
+}
+
+.module-header {
+    background: linear-gradient(135deg, var(--primary-red), var(--gold));
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.module-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.module-header h2 {
+    font-size: 2.8rem;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.module-content {
+    padding: 4rem;
+}
+
+/* 时间线 - 居中对称设计 */
+.timeline-section {
+    position: relative;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-red), var(--gold));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-content {
+    flex: 1;
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px var(--shadow-light);
+    margin: 0 3rem;
+    text-align: center;
+    position: relative;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--primary-red), var(--gold));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.timeline-date {
+    background: linear-gradient(135deg, var(--primary-red), var(--gold));
+    color: white;
+    padding: 1.5rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    box-shadow: 0 6px 20px rgba(200, 16, 46, 0.3);
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-content h3 {
+    color: var(--primary-red);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.timeline-content p {
+    color: var(--ink-black);
+    line-height: 2;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.timeline-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 2rem;
+    box-shadow: 0 6px 20px var(--shadow-light);
+}
+
+/* 制作工艺网格 - 居中瀑布流 */
+.craft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 3rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.craft-item {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px var(--shadow-light);
+    transition: all 0.5s ease;
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.craft-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 50px var(--shadow-medium);
+}
+
+.craft-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.craft-item:hover .craft-image {
+    transform: scale(1.1);
+}
+
+.craft-item h3 {
+    padding: 2.5rem 2rem 1.5rem;
+    color: var(--primary-red);
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.craft-item p {
+    padding: 0 2.5rem 2.5rem;
+    color: var(--ink-black);
+    line-height: 2;
+    font-size: 1.15rem;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* 表演技艺 - 完美居中双栏 */
+.performance-section {
+    padding: 2rem;
+}
+
+.performance-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skill-list {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.skill-item {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px var(--shadow-light);
+    border-top: 4px solid var(--gold);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px var(--shadow-medium);
+}
+
+.skill-item h3 {
+    color: var(--primary-red);
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.skill-item p {
+    color: var(--ink-black);
+    line-height: 2;
+    font-size: 1.15rem;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.performance-demo {
+    text-align: center;
+}
+
+.performance-demo h3 {
+    color: var(--primary-red);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* 名家大师 - 居中卡片 */
+.masters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 4rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.master-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px var(--shadow-light);
+    transition: all 0.5s ease;
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.master-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 60px var(--shadow-medium);
+}
+
+.master-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.master-card:hover .master-image {
+    transform: scale(1.05);
+}
+
+.master-card h3 {
+    color: var(--primary-red);
+    font-size: 2.2rem;
+    margin: 2.5rem 0 1rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.master-title {
+    color: var(--gold);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.master-card p {
+    padding: 0 2.5rem;
+    color: var(--ink-black);
+    line-height: 2;
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.master-achievements {
+    padding: 0 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.master-achievements span {
+    background: linear-gradient(135deg, var(--light-gold), var(--gold));
+    color: var(--ink-black);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+}
+
+/* 经典剧目 - 居中网格 */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 4rem;
+    padding: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.story-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px var(--shadow-light);
+    transition: all 0.5s ease;
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.story-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px var(--shadow-medium);
+}
+
+.story-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.story-card:hover .story-image {
+    transform: scale(1.1);
+}
+
+.story-card h3 {
+    color: var(--primary-red);
+    font-size: 2rem;
+    padding: 2.5rem 2.5rem 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+}
+
+.story-card p {
+    padding: 0 2.5rem;
+    color: var(--ink-black);
+    line-height: 2;
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.story-tags {
+    padding: 0 2.5rem 2.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.story-tags span {
+    background: linear-gradient(135deg, var(--light-gold), var(--gold));
+    color: var(--primary-red);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+}
+
+/* 文化意义 - 完美居中 */
+.cultural-significance {
+    padding: 2rem;
+}
+
+.significance-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.significance-text {
+    background: white;
+    padding: 4rem;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px var(--shadow-light);
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.significance-text h3 {
+    color: var(--primary-red);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.significance-text h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+}
+
+.significance-text p {
+    color: var(--ink-black);
+    line-height: 2.2;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.significance-image {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px var(--shadow-light);
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.significance-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* 全局居中修复 */
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 响应式居中 */
+@media (max-width: 768px) {
+    .culture-container {
+        padding: 1rem;
+    }
+    
+    .page-title {
+        font-size: 3rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .module-card {
+        margin: 2rem 1rem;
+    }
+    
+    .module-content {
+        padding: 2.5rem;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 60px;
+    }
+    
+    .timeline-item:nth-child(odd) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .timeline-date {
+        margin-bottom: 1.5rem;
+    }
+    
+    .timeline-content {
+        margin: 0;
+        text-align: center;
+    }
+    
+    .performance-content,
+    .significance-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .craft-grid,
+    .masters-grid,
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-content,
+    .craft-item,
+    .skill-item,
+    .master-card,
+    .story-card,
+    .significance-text {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .module-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .timeline-content,
+    .craft-item,
+    .skill-item,
+    .master-card,
+    .story-card,
+    .significance-text {
+        padding: 2rem;
+    }
+}
+
+/* 高级动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.module-card {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.craft-item,
+.master-card,
+.story-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.skill-item:nth-child(odd) {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.skill-item:nth-child(even) {
+    animation: slideInRight 0.6s ease-out;
+}
+
+/* 悬停效果增强 */
+.craft-item:hover,
+.master-card:hover,
+.story-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 80px var(--shadow-heavy);
+}
+
+/* 装饰性背景 */
+.culture-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255,215,0,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(200,16,46,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 滚动进度条 */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-red), var(--gold));
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+/* 文字装饰 */
+.module-header h2 {
+    position: relative;
+}
+
+.module-header h2::before,
+.module-header h2::after {
+    content: '❦';
+    color: rgba(255,255,255,0.6);
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    vertical-align: middle;
+}

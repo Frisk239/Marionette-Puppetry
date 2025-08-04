@@ -1,0 +1,275 @@
+/* 虚拟戏台样式 */
+
+.interactive-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-title {
+    text-align: center;
+    color: var(--primary-red);
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    text-align: center;
+    color: var(--dark-brown);
+    margin-bottom: 2rem;
+}
+
+.interactive-area {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.puppet-stage {
+    background: linear-gradient(135deg, #8b4513, #654321);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.stage-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255,215,0,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255,215,0,0.1) 0%, transparent 50%);
+}
+
+.stage-curtain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(90deg, 
+        var(--primary-red) 0%, 
+        var(--gold) 25%, 
+        var(--primary-red) 50%, 
+        var(--gold) 75%, 
+        var(--primary-red) 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.stage-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(90deg, #654321, #8b4513);
+    border-radius: 0 0 12px 12px;
+}
+
+.puppet-container {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.puppet-svg {
+    width: 200px;
+    height: 300px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+
+.puppet-part {
+    transition: all 0.3s ease;
+}
+
+.puppet-part:hover {
+    filter: brightness(1.1);
+}
+
+.control-strings {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100px;
+    pointer-events: none;
+}
+
+.string {
+    position: absolute;
+    width: 1px;
+    background: rgba(255,255,255,0.5);
+    transform-origin: top;
+}
+
+.string-head {
+    left: 50%;
+    height: 80px;
+    animation: stringSway 3s ease-in-out infinite;
+}
+
+.string-left {
+    left: 30%;
+    height: 90px;
+    animation: stringSway 3s ease-in-out infinite 0.5s;
+}
+
+.string-right {
+    left: 70%;
+    height: 90px;
+    animation: stringSway 3s ease-in-out infinite 1s;
+}
+
+@keyframes stringSway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(2deg); }
+}
+
+.control-panel {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.control-panel h3 {
+    color: var(--primary-red);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.action-buttons {
+    margin-bottom: 2rem;
+}
+
+.action-buttons h4,
+.manual-controls h4,
+.story-generator h4 {
+    color: var(--dark-brown);
+    margin-bottom: 1rem;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    background: var(--light-gold);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.action-btn:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+}
+
+.control-group {
+    margin-bottom: 1rem;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--ink-black);
+    font-size: 0.9rem;
+}
+
+.control-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--light-gold);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.control-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    cursor: pointer;
+}
+
+.control-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    cursor: pointer;
+    border: none;
+}
+
+.story-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+}
+
+.story-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--light-gold);
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-red);
+}
+
+.instructions {
+    background: var(--light-gold);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.instructions h3 {
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.instructions ul {
+    list-style-position: inside;
+    color: var(--ink-black);
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .interactive-area {
+        grid-template-columns: 1fr;
+    }
+    
+    .puppet-stage {
+        padding: 1rem;
+    }
+    
+    .puppet-svg {
+        width: 150px;
+        height: 225px;
+    }
+    
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+}
