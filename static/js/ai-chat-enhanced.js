@@ -1,6 +1,7 @@
-// 简化版AI问答系统 - 100%调用DeepSeek API
+// 终极简化版AI问答系统 - 100%调用DeepSeek API + 加载状态管理
 class AIChatSystem {
     constructor() {
+        this.isLoading = false;
         this.init();
     }
 
@@ -16,21 +17,25 @@ class AIChatSystem {
         
         if (chatInput) {
             chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
+                if (e.key === 'Enter' && !this.isLoading) {
                     this.sendMessage();
                 }
             });
         }
 
         if (sendButton) {
-            sendButton.addEventListener('click', () => this.sendMessage());
+            sendButton.addEventListener('click', () => {
+                if (!this.isLoading) {
+                    this.sendMessage();
+                }
+            });
         }
 
         // 悬浮聊天
         const floatingInput = document.getElementById('floatingChatInput');
         if (floatingInput) {
             floatingInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
+                if (e.key === 'Enter' && !this.isLoading) {
                     this.sendFloatingMessage();
                 }
             });
@@ -43,7 +48,9 @@ class AIChatSystem {
         
         if (floatingBall && floatingWindow) {
             floatingBall.addEventListener('click', () => {
-                this.toggleFloatingChat();
+                if (!this.isLoading) {
+                    this.toggleFloatingChat();
+                }
             });
         }
     }
@@ -55,26 +62,52 @@ class AIChatSystem {
         }
     }
 
+    setLoadingState(isLoading) {
+        this.isLoading = isLoading;
+        
+        // 更新主界面按钮
+        const sendButton = document.getElementById('sendButton');
+        const chatInput = document.getElementById('chatInput');
+        
+        if (sendButton) {
+            sendButton.disabled = isLoading;
+            sendButton.innerHTML = isLoading ? '<div class="loading-spinner"></div>' : '发送';
+        }
+        
+        if (chatInput) {
+            chatInput.disabled = isLoading;
+        }
+        
+        // 更新预设问题按钮状态
+        const presetQuestions = document.querySelectorAll('.preset-question');
+        presetQuestions.forEach(btn => {
+            btn.style.pointerEvents = isLoading ? 'none' : 'auto';
+            btn.style.opacity = isLoading ? '0.6' : '1';
+        });
+        
+        // 更新悬浮聊天输入
+        const floatingInput = document.getElementById('floatingChatInput');
+        if (floatingInput) {
+            floatingInput.disabled = isLoading;
+        }
+    }
+
     async sendMessage() {
         const input = document.getElementById('chatInput');
-        const button = document.getElementById('sendButton');
         const messagesContainer = document.getElementById('chatMessages');
         
-        if (!input || !messagesContainer) return;
+        if (!input || !messagesContainer || this.isLoading) return;
 
         const message = input.value.trim();
         if (!message) return;
 
-        // 禁用按钮，显示加载状态
-        button.disabled = true;
-        button.innerHTML = '<div class="loading-spinner"></div>';
+        this.setLoadingState(true);
 
         // 添加用户消息
         this.addMessage(message, 'user', messagesContainer);
         input.value = '';
 
         try {
-            // 直接调用后端API
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
@@ -89,8 +122,7 @@ class AIChatSystem {
             console.error('API调用失败:', error);
             this.addMessage('抱歉，暂时无法连接到AI服务，请检查网络后重试。', 'bot', messagesContainer);
         } finally {
-            button.disabled = false;
-            button.innerHTML = '发送';
+            this.setLoadingState(false);
         }
     }
 
@@ -98,10 +130,12 @@ class AIChatSystem {
         const input = document.getElementById('floatingChatInput');
         const messagesContainer = document.getElementById('floatingChatMessages');
         
-        if (!input || !messagesContainer) return;
+        if (!input || !messagesContainer || this.isLoading) return;
 
         const message = input.value.trim();
         if (!message) return;
+
+        this.setLoadingState(true);
 
         this.addMessage(message, 'user', messagesContainer);
         input.value = '';
@@ -120,13 +154,17 @@ class AIChatSystem {
         } catch (error) {
             console.error('API调用失败:', error);
             this.addMessage('抱歉，暂时无法连接到AI服务。', 'bot', messagesContainer);
+        } finally {
+            this.setLoadingState(false);
         }
     }
 
-    // 预设问题快速提问 - 直接调用AI
+    // 预设问题快速提问 - 直接调用AI + 加载状态
     async askPresetQuestion(question) {
         const messagesContainer = document.getElementById('chatMessages');
-        if (!messagesContainer) return;
+        if (!messagesContainer || this.isLoading) return;
+
+        this.setLoadingState(true);
 
         // 添加用户消息
         this.addMessage(question, 'user', messagesContainer);
@@ -145,6 +183,8 @@ class AIChatSystem {
         } catch (error) {
             console.error('API调用失败:', error);
             this.addMessage('抱歉，暂时无法连接到AI服务。', 'bot', messagesContainer);
+        } finally {
+            this.setLoadingState(false);
         }
     }
 
@@ -170,25 +210,25 @@ class AIChatSystem {
 
 // 全局函数
 function sendMessage() {
-    if (window.aiChatSystem) {
+    if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
         window.aiChatSystem.sendMessage();
     }
 }
 
 function sendFloatingMessage() {
-    if (window.aiChatSystem) {
+    if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
         window.aiChatSystem.sendFloatingMessage();
     }
 }
 
 function toggleFloatingChat() {
-    if (window.aiChatSystem) {
+    if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
         window.aiChatSystem.toggleFloatingChat();
     }
 }
 
 function askQuestion(question) {
-    if (window.aiChatSystem) {
+    if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
         window.aiChatSystem.askPresetQuestion(question);
     }
 }
