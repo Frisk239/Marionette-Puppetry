@@ -28,13 +28,16 @@
     font-family: 'Noto Serif SC', serif;
 }
 
-/* 页面标题区域 - 极致居中 */
+/* 页面标题区域 - 与智慧问答页面完全一致 */
 .page-header {
     text-align: center;
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #c8102e, #a00d26);
     color: white;
-    margin-bottom: 4rem;
+    margin: 2rem auto 3rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(200, 16, 46, 0.2);
+    max-width: 1000px;
     position: relative;
     overflow: hidden;
 }

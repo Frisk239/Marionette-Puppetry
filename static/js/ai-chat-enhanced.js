@@ -7,7 +7,6 @@ class AIChatSystem {
 
     init() {
         this.setupEventListeners();
-        this.setupFloatingChat();
     }
 
     setupEventListeners() {
@@ -29,36 +28,6 @@ class AIChatSystem {
                     this.sendMessage();
                 }
             });
-        }
-
-        // 悬浮聊天
-        const floatingInput = document.getElementById('floatingChatInput');
-        if (floatingInput) {
-            floatingInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !this.isLoading) {
-                    this.sendFloatingMessage();
-                }
-            });
-        }
-    }
-
-    setupFloatingChat() {
-        const floatingBall = document.getElementById('aiFloatingBall');
-        const floatingWindow = document.getElementById('floatingChatWindow');
-        
-        if (floatingBall && floatingWindow) {
-            floatingBall.addEventListener('click', () => {
-                if (!this.isLoading) {
-                    this.toggleFloatingChat();
-                }
-            });
-        }
-    }
-
-    toggleFloatingChat() {
-        const floatingWindow = document.getElementById('floatingChatWindow');
-        if (floatingWindow) {
-            floatingWindow.classList.toggle('active');
         }
     }
 
@@ -84,12 +53,6 @@ class AIChatSystem {
             btn.style.pointerEvents = isLoading ? 'none' : 'auto';
             btn.style.opacity = isLoading ? '0.6' : '1';
         });
-        
-        // 更新悬浮聊天输入
-        const floatingInput = document.getElementById('floatingChatInput');
-        if (floatingInput) {
-            floatingInput.disabled = isLoading;
-        }
     }
 
     async sendMessage() {
@@ -121,39 +84,6 @@ class AIChatSystem {
         } catch (error) {
             console.error('API调用失败:', error);
             this.addMessage('抱歉，暂时无法连接到AI服务，请检查网络后重试。', 'bot', messagesContainer);
-        } finally {
-            this.setLoadingState(false);
-        }
-    }
-
-    async sendFloatingMessage() {
-        const input = document.getElementById('floatingChatInput');
-        const messagesContainer = document.getElementById('floatingChatMessages');
-        
-        if (!input || !messagesContainer || this.isLoading) return;
-
-        const message = input.value.trim();
-        if (!message) return;
-
-        this.setLoadingState(true);
-
-        this.addMessage(message, 'user', messagesContainer);
-        input.value = '';
-
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: message })
-            });
-
-            const data = await response.json();
-            this.addMessage(data.answer, 'bot', messagesContainer);
-        } catch (error) {
-            console.error('API调用失败:', error);
-            this.addMessage('抱歉，暂时无法连接到AI服务。', 'bot', messagesContainer);
         } finally {
             this.setLoadingState(false);
         }
@@ -212,18 +142,6 @@ class AIChatSystem {
 function sendMessage() {
     if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
         window.aiChatSystem.sendMessage();
-    }
-}
-
-function sendFloatingMessage() {
-    if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
-        window.aiChatSystem.sendFloatingMessage();
-    }
-}
-
-function toggleFloatingChat() {
-    if (window.aiChatSystem && !window.aiChatSystem.isLoading) {
-        window.aiChatSystem.toggleFloatingChat();
     }
 }
 

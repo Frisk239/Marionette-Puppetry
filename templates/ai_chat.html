@@ -89,29 +89,6 @@
         </div>
     </div>
 </div>
-
-<!-- 悬浮球AI助手 -->
-<div class="ai-floating-ball" id="aiFloatingBall" onclick="toggleFloatingChat()">
-    <span style="display: none;" id="notificationBadge"></span>
-</div>
-
-<!-- 悬浮对话窗口 -->
-<div class="floating-chat-window" id="floatingChatWindow">
-    <div class="floating-chat-header">
-        <span class="floating-chat-title">🤖 AI助手</span>
-        <button class="close-floating-chat" onclick="toggleFloatingChat()">×</button>
-    </div>
-    <div class="floating-chat-messages" id="floatingChatMessages">
-        <div class="message bot">
-            <div class="message-content">
-                您好！我是您的AI木偶戏助手，有什么我可以帮助您的吗？
-            </div>
-        </div>
-    </div>
-    <div class="floating-chat-input">
-        <input type="text" id="floatingChatInput" placeholder="输入问题..." onkeypress="handleFloatingChatKeyPress(event)">
-    </div>
-</div>
 {% endblock %}
 
 {% block scripts %}
