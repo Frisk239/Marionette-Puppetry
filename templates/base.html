@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}闽南木偶戏 - 非遗文化传承{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/traditional.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/culture.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ai-chat-enhanced.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +17,6 @@
                 <ul class="nav-menu">
                     <li><a href="{{ url_for('index') }}">首页</a></li>
                     <li><a href="{{ url_for('culture') }}">文化长廊</a></li>
-                    <li><a href="{{ url_for('interactive') }}">虚拟戏台</a></li>
                     <li><a href="{{ url_for('ai_chat') }}">智慧问答</a></li>
                     <li><a href="{{ url_for('gallery') }}">影像资料</a></li>
                 </ul>
