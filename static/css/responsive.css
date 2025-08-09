@@ -507,3 +507,186 @@ img {
         padding: 1rem;
     }
 }
+
+/* 文化长廊页面移动端优化 */
+@media (max-width: 768px) {
+    /* 基础重置 */
+    .culture-container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 页面标题 */
+    .page-header {
+        padding: 1rem;
+        margin: 0;
+        text-align: center;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* 模块卡片 */
+    .module-card {
+        width: 100%;
+        margin: 1rem 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .module-header {
+        padding: 0.8rem 1rem;
+    }
+
+    .module-header h2 {
+        font-size: 1.3rem;
+        margin: 0;
+    }
+
+    .module-content {
+        padding: 0.5rem 1rem 1.5rem;
+    }
+
+    /* 时间线布局 */
+    .timeline {
+        padding: 0;
+    }
+
+    .timeline-item {
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+
+    .timeline-date {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+    }
+
+    .timeline-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .timeline-image {
+        width: 100%;
+        height: auto;
+        margin: 0.5rem 0;
+    }
+
+    /* 制作工艺网格 */
+    .craft-grid {
+        display: block;
+    }
+
+    .craft-item {
+        margin-bottom: 1.5rem;
+        padding: 0;
+    }
+
+    .craft-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .craft-item h3 {
+        font-size: 1.1rem;
+        margin: 0.3rem 0;
+    }
+
+    .craft-item p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* 表演技艺布局 */
+    .performance-content {
+        display: block;
+    }
+
+    .skill-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .skill-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .skill-item p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* 名家大师网格 */
+    .masters-grid {
+        display: block;
+    }
+
+    .master-card {
+        margin-bottom: 2rem;
+        padding: 0;
+    }
+
+    .master-image {
+        width: 100%;
+        height: auto;
+    }
+
+    /* 经典剧目网格 */
+    .stories-grid {
+        display: block;
+    }
+
+    .story-card {
+        margin-bottom: 2rem;
+        padding: 0;
+    }
+
+    .story-image {
+        width: 100%;
+        height: auto;
+    }
+
+    /* 文化意义布局 */
+    .significance-content {
+        display: block;
+    }
+
+    .significance-text {
+        margin-bottom: 1.5rem;
+    }
+
+    .significance-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* 通用文本样式 */
+    p, li {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        word-break: break-word;
+    }
+
+    h1, h2, h3, h4 {
+        line-height: 1.3;
+    }
+}
