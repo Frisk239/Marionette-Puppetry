@@ -54,31 +54,54 @@
     }
 
     .nav-container {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem;
     }
 
     .site-title {
         font-size: 1.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
         text-align: left;
     }
 
+    /* 优化移动端导航栏下拉样式 */
     .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        max-width: 280px;
-        height: 100vh;
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        width: 180px;
         background: white;
-        flex-direction: column;
-        padding: 3.5rem 1.5rem 1.5rem;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-        transition: right 0.3s ease;
+        padding: 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-radius: 8px;
         z-index: 1000;
-        overflow-y: auto;
+        transition: all 0.3s ease;
+    }
+
+    .nav-container:hover .nav-menu {
+        display: block;
+    }
+
+    .nav-menu li {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-menu a {
+        font-size: 0.95rem;
+        padding: 0.3rem 0;
+        display: block;
+        color: var(--primary-red);
+        transition: all 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+        color: white;
+        background: var(--primary-red);
+        padding-left: 1.5rem;
     }
 
     .nav-menu.active {
@@ -95,6 +118,8 @@
         font-size: 1.1rem;
         padding: 0.4rem 0.8rem;
         display: block;
+        color: white; /* 修改为白色文字 */
+        background: var(--primary-red); /* 添加红色背景确保对比度 */
     }
 
     /* 遮罩层 */
