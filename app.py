@@ -1,31 +1,8 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
-import sqlite3
-import json
-import os
-from datetime import datetime
 import requests
 import config
 
 app = Flask(__name__)
-
-# 数据库初始化 - 仅保留聊天记录
-def init_db():
-    conn = sqlite3.connect('marionette.db')
-    cursor = conn.cursor()
-    
-    # 创建用户互动记录表（仅存储聊天记录）
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS user_sessions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            session_id TEXT NOT NULL,
-            interaction_type TEXT NOT NULL,
-            content TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    
-    conn.commit()
-    conn.close()
 
 @app.route('/')
 def index():
@@ -80,20 +57,8 @@ def chat():
         print(f"API调用错误: {e}")
         answer = "抱歉，暂时无法连接到AI服务，请检查网络后重试。"
     
-    # 记录对话
-    conn = sqlite3.connect('marionette.db')
-    cursor = conn.cursor()
-    session_id = request.json.get('session_id', 'default')
-    cursor.execute('''
-        INSERT INTO user_sessions (session_id, interaction_type, content) 
-        VALUES (?, ?, ?)
-    ''', (session_id, 'chat', json.dumps({'user': user_message, 'bot': answer})))
-    
-    conn.commit()
-    conn.close()
     
     return jsonify({'answer': answer})
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True, host='0.0.0.0', port=5000)
