@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{% block title %}闽南木偶戏 - 非遗文化传承{% endblock %}</title>
+    <link rel="preload" href="{{ url_for('static', filename='css/gallery-compatible.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/gallery-compatible.css') }}"></noscript>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/traditional.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/culture.css') }}">

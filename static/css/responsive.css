@@ -15,7 +15,7 @@
         display: block;
         position: fixed;
         top: 1rem;
-        right: 1rem;
+        right: 0.5rem;  /* 从1rem改为0.5rem，向左移动 */
         z-index: 1001;
         background: linear-gradient(135deg, #c8102e, #a00d26);
         color: white;
