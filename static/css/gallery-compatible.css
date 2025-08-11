@@ -1,0 +1,687 @@
+/* 闽南木偶戏 - 影像资料页面兼容样式
+ * 与现有网站风格完全统一的设计
+ * 继承传统.css和culture.css的视觉语言
+ */
+
+/* 完全继承现有设计系统 */
+:root {
+    /* 色彩系统 - 与traditional.css完全一致 */
+    --primary-red: #c8102e;
+    --secondary-red: #8b0000;
+    --gold: #ffd700;
+    --light-gold: #fff8dc;
+    --dark-brown: #654321;
+    --light-brown: #d2b48c;
+    --paper-white: #f5f5dc;
+    --ink-black: #2f2f2f;
+    
+    /* 阴影系统 - 与culture.css统一 */
+    --shadow-light: rgba(0,0,0,0.08);
+    --shadow-medium: rgba(0,0,0,0.12);
+    --shadow-heavy: rgba(0,0,0,0.2);
+    
+    /* 字体系统 - 完全继承 */
+    --font-primary: 'Noto Serif SC', serif;
+    --font-secondary: 'Noto Sans SC', sans-serif;
+}
+
+/* 页面容器 - 与culture.css的culture-container统一 */
+.gallery-compatible-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    background: linear-gradient(135deg, var(--paper-white) 0%, #faf8f5 100%);
+    min-height: 100vh;
+    font-family: var(--font-primary);
+    position: relative;
+}
+
+/* 装饰性背景 - 与culture.css完全一致 */
+.gallery-compatible-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255,215,0,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(200,16,46,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 页面标题区域 - 与culture.css的page-header完全一致 */
+.gallery-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+    color: white;
+    margin: 2rem auto 3rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(200, 16, 46, 0.2);
+    max-width: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.gallery-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #fff, var(--light-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gallery-subtitle {
+    font-size: 1.6rem;
+    font-weight: 300;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-secondary);
+}
+
+/* 控制区域 - 继承传统导航样式 */
+.gallery-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin: 0 auto 2rem;
+    max-width: 1200px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px var(--shadow-light);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-weight: 600;
+    color: var(--ink-black);
+    font-family: var(--font-secondary);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--light-gold);
+    background: white;
+    color: var(--dark-brown);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: var(--font-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+    left: 0;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    color: white;
+    border-color: var(--primary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+/* 视图切换按钮 - 继承传统按钮样式 */
+.view-options {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.view-btn {
+    padding: 0.75rem;
+    border: 2px solid var(--light-gold);
+    background: white;
+    color: var(--dark-brown);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-secondary);
+}
+
+.view-btn:hover,
+.view-btn.active {
+    background: var(--gold);
+    color: var(--ink-black);
+    transform: translateY(-2px);
+}
+
+/* 画廊网格 - 继承culture.css的module-card设计 */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+}
+
+.gallery-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+}
+
+/* 画廊卡片 - 完全继承module-card设计 */
+.gallery-card {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px var(--shadow-light);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255,215,0,0.1);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.gallery-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 60px var(--shadow-medium);
+}
+
+/* 卡片媒体区域 */
+.card-media {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.card-media img,
+.card-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .card-media img,
+.gallery-card:hover .card-media video {
+    transform: scale(1.1);
+}
+
+/* 卡片覆盖层 - 中国风渐变 */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(200, 16, 46, 0.1) 50%,
+        rgba(200, 16, 46, 0.8) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+}
+
+.gallery-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.overlay-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-primary);
+}
+
+.overlay-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-family: var(--font-secondary);
+}
+
+/* 卡片信息区域 */
+.card-info {
+    padding: 2rem;
+}
+
+.card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+    font-family: var(--font-primary);
+}
+
+.card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--dark-brown);
+    font-family: var(--font-secondary);
+}
+
+.meta-icon {
+    color: var(--gold);
+}
+
+.card-description {
+    color: var(--ink-black);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-family: var(--font-secondary);
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background: var(--light-gold);
+    color: var(--dark-brown);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: var(--font-secondary);
+}
+
+/* 列表视图样式 - 继承现有响应式设计 */
+.gallery-list .gallery-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.gallery-list .card-media {
+    width: 300px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 25px 0 0 25px;
+}
+
+.gallery-list .card-info {
+    flex: 1;
+    padding: 2rem;
+}
+
+/* 灯箱效果 - 中国风设计 */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px var(--shadow-heavy);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2001;
+    transition: color 0.3s ease;
+    font-family: var(--font-primary);
+}
+
+.lightbox-close:hover {
+    color: var(--gold);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    background: rgba(0,0,0,0.7);
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    font-family: var(--font-primary);
+}
+
+/* 动画效果 - 与culture.css统一 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 响应式设计 - 与现有系统完全统一 */
+@media (max-width: 768px) {
+    .gallery-header {
+        padding: 2rem 1rem;
+        margin: 0 0 1rem 0;
+        border-radius: 0;
+    }
+    
+    .gallery-title {
+        font-size: 2.5rem;
+    }
+    
+    .gallery-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .gallery-controls {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+        margin: 0 1rem 2rem;
+    }
+    
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-buttons {
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .gallery-list {
+        padding: 0 1rem;
+    }
+    
+    .gallery-card {
+        margin: 0;
+        border-radius: 15px;
+    }
+    
+    .gallery-list .gallery-card {
+        flex-direction: column;
+    }
+    
+    .gallery-list .card-media {
+        width: 100%;
+        height: 250px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .card-info {
+        padding: 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.4rem;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 80%;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
+    
+    .lightbox-caption {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-title {
+        font-size: 2rem;
+    }
+    
+    .filter-buttons {
+        gap: 0.3rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .gallery-grid {
+        gap: 1rem;
+    }
+    
+    .card-media {
+        aspect-ratio: 4/3;
+    }
+    
+    .card-info {
+        padding: 1rem;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* 触摸设备优化 - 与mobile-nav.js兼容 */
+@media (hover: none) and (pointer: coarse) {
+    .gallery-card:hover {
+        transform: none;
+    }
+    
+    .gallery-card:active {
+        transform: scale(0.98);
+    }
+    
+    .card-overlay {
+        opacity: 1;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(200, 16, 46, 0.3) 70%,
+            rgba(200, 16, 46, 0.8) 100%
+        );
+    }
+    
+    .overlay-content {
+        transform: translateY(0);
+    }
+}
+
+/* 暗色模式支持 - 与系统主题统一 */
+@media (prefers-color-scheme: dark) {
+    .gallery-compatible-container {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    }
+    
+    .gallery-card {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+    
+    .card-info {
+        background: #2a2a2a;
+    }
+    
+    .card-title {
+        color: var(--gold);
+    }
+    
+    .card-description {
+        color: #e0e0e0;
+    }
+    
+    .gallery-controls {
+        background: #2a2a2a;
+    }
+    
+    .filter-btn {
+        background: #2a2a2a;
+        color: #e0e0e0;
+        border-color: var(--dark-brown);
+    }
+}
+
+/* 滚动进度条 - 与culture.css统一 */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-red), var(--gold));
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+/* 文字装饰 - 中国风元素 */
+.gallery-title {
+    position: relative;
+}
+
+.gallery-title::before,
+.gallery-title::after {
+    content: '❦';
+    color: rgba(255,255,255,0.6);
+    font-size: 2rem;
+    margin: 0 1rem;
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .gallery-title::before,
+    .gallery-title::after {
+        display: none;
+    }
+}

@@ -1,0 +1,402 @@
+{% extends "base.html" %}
+
+{% block title %}影像资料 - 闽南木偶戏珍贵影像{% endblock %}
+
+{% block content %}
+<div class="gallery-compatible-container">
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress"></div>
+    
+    <!-- 页面标题区域 - 与culture.html统一 -->
+    <header class="gallery-header">
+        <h1 class="gallery-title">影像资料</h1>
+        <p class="gallery-subtitle">珍贵的木偶戏表演影像，记录传统艺术的精彩瞬间</p>
+    </header>
+
+    <!-- 控制区域 -->
+    <div class="gallery-controls">
+        <div class="filter-section">
+            <span class="filter-label">分类筛选：</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="performance">精彩表演</button>
+                <button class="filter-btn" data-filter="craft">制作工艺</button>
+                <button class="filter-btn" data-filter="masters">名家大师</button>
+                <button class="filter-btn" data-filter="stories">经典剧目</button>
+            </div>
+        </div>
+        
+        <div class="view-options">
+            <button class="view-btn active" data-view="grid" title="网格视图">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+            </button>
+            <button class="view-btn" data-view="list" title="列表视图">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 搜索功能 -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <input type="text" id="gallerySearch" placeholder="搜索影像资料..." 
+               style="padding: 0.75rem 1.5rem; border: 2px solid var(--light-gold); border-radius: 25px; 
+                      font-family: var(--font-secondary); width: 300px; max-width: 90%;">
+    </div>
+
+    <!-- 画廊内容 -->
+    <div class="gallery-grid" id="galleryContainer">
+        <!-- 表演类 -->
+        <div class="gallery-card" data-category="performance">
+            <div class="card-media">
+                <img src="{{ url_for('static', filename='images/performance.jpg') }}" 
+                     alt="传统庙会表演" loading="lazy">
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">传统庙会表演</h3>
+                        <p class="overlay-description">闽南传统庙会中的木偶戏表演</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">传统庙会表演</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">📅</span>
+                        2023年春节
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">📍</span>
+                        泉州开元寺
+                    </span>
+                </div>
+                <p class="card-description">
+                    泉州开元寺春节庙会期间的传统木偶戏表演，展现了闽南地区独特的民间艺术魅力。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">春节</span>
+                    <span class="tag">庙会</span>
+                    <span class="tag">传统</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-card" data-category="performance">
+            <div class="card-media">
+                <video controls poster="{{ url_for('static', filename='images/performance.jpg') }}">
+                    <source src="{{ url_for('static', filename='videos/performance-demo.mp4') }}" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">现代舞台表演</h3>
+                        <p class="overlay-description">融合现代元素的木偶戏创新表演</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">现代舞台表演</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">📅</span>
+                        2023年艺术节
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">⏱️</span>
+                        5分30秒
+                    </span>
+                </div>
+                <p class="card-description">
+                    现代舞台技术与传统木偶戏的完美融合，展现了非遗文化的创新发展。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">现代</span>
+                    <span class="tag">创新</span>
+                    <span class="tag">舞台</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 工艺类 -->
+        <div class="gallery-card" data-category="craft">
+            <div class="card-media">
+                <img src="{{ url_for('static', filename='images/craft.jpg') }}" 
+                     alt="木偶制作工艺" loading="lazy">
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">传统雕刻工艺</h3>
+                        <p class="overlay-description">木偶头雕刻的精细工艺展示</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">传统雕刻工艺</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">👨‍🔧</span>
+                        陈师傅
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">🪵</span>
+                        樟木雕刻
+                    </span>
+                </div>
+                <p class="card-description">
+                    传统木偶头雕刻工艺，每一道工序都凝聚着匠人的智慧与技艺传承。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">雕刻</span>
+                    <span class="tag">传统工艺</span>
+                    <span class="tag">匠人精神</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-card" data-category="craft">
+            <div class="card-media">
+                <img src="{{ url_for('static', filename='images/culture/painting.jpg') }}" 
+                     alt="彩绘工艺" loading="lazy">
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">彩绘工艺</h3>
+                        <p class="overlay-description">传统彩绘技艺的展示</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">彩绘工艺</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">🎨</span>
+                        天然颜料
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">✋</span>
+                        手工绘制
+                    </span>
+                </div>
+                <p class="card-description">
+                    使用天然矿物颜料进行手工彩绘，色彩鲜艳持久，体现传统美学。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">彩绘</span>
+                    <span class="tag">天然颜料</span>
+                    <span class="tag">手工</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 大师类 -->
+        <div class="gallery-card" data-category="masters">
+            <div class="card-media">
+                <img src="{{ url_for('static', filename='images/culture/master-li.jpg') }}" 
+                     alt="李天禄大师" loading="lazy">
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">李天禄大师</h3>
+                        <p class="overlay-description">台湾布袋戏国宝级大师</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">李天禄大师</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">📅</span>
+                        1910-1998
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">🏆</span>
+                        布袋戏泰斗
+                    </span>
+                </div>
+                <p class="card-description">
+                    台湾布袋戏表演艺术大师，被誉为"布袋戏泰斗"，对闽南木偶戏的传承与发展做出了巨大贡献。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">大师</span>
+                    <span class="tag">传承</span>
+                    <span class="tag">台湾</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-card" data-category="masters">
+            <div class="card-media">
+                <video controls poster="{{ url_for('static', filename='images/culture/master-chen.jpg') }}">
+                    <source src="{{ url_for('static', filename='videos/master-interview.mp4') }}" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">大师访谈</h3>
+                        <p class="overlay-description">陈锡煌大师谈木偶戏传承</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">陈锡煌大师访谈</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">⏱️</span>
+                        8分15秒
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">💬</span>
+                        传承经验
+                    </span>
+                </div>
+                <p class="card-description">
+                    陈锡煌大师分享木偶戏传承的宝贵经验，探讨传统艺术在现代社会的价值与发展。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">访谈</span>
+                    <span class="tag">传承</span>
+                    <span class="tag">经验分享</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 剧目类 -->
+        <div class="gallery-card" data-category="stories">
+            <div class="card-media">
+                <img src="{{ url_for('static', filename='images/culture/story-watermargin.jpg') }}" 
+                     alt="水浒传场景" loading="lazy">
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">武松打虎</h3>
+                        <p class="overlay-description">水浒传经典片段</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">武松打虎</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">📚</span>
+                        水浒传
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">🎭</span>
+                        武松
+                    </span>
+                </div>
+                <p class="card-description">
+                    水浒传中的经典片段，武松景阳冈打虎的英勇场景，展现木偶戏的表演张力。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">水浒传</span>
+                    <span class="tag">武松</span>
+                    <span class="tag">经典</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-card" data-category="stories">
+            <div class="card-media">
+                <img src="{{ url_for('static', filename='images/culture/story-threekingdoms.jpg') }}" 
+                     alt="三国演义场景" loading="lazy">
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">桃园三结义</h3>
+                        <p class="overlay-description">三国演义经典片段</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">桃园三结义</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">📚</span>
+                        三国演义
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">👥</span>
+                        刘关张
+                    </span>
+                </div>
+                <p class="card-description">
+                    三国演义开篇经典，刘备、关羽、张飞桃园结义的忠义场景。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">三国演义</span>
+                    <span class="tag">结义</span>
+                    <span class="tag">忠义</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-card" data-category="stories">
+            <div class="card-media">
+                <video controls poster="{{ url_for('static', filename='images/culture/story-journeywest.jpg') }}">
+                    <source src="{{ url_for('static', filename='videos/story-performance.mp4') }}" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+                <div class="card-overlay">
+                    <div class="overlay-content">
+                        <h3 class="overlay-title">三打白骨精</h3>
+                        <p class="overlay-description">西游记经典片段</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title">三打白骨精</h3>
+                <div class="card-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">📚</span>
+                        西游记
+                    </span>
+                    <span class="meta-item">
+                        <span class="meta-icon">⏱️</span>
+                        12分30秒
+                    </span>
+                </div>
+                <p class="card-description">
+                    西游记中孙悟空三打白骨精的经典片段，展现木偶戏在神话故事中的表现力。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">西游记</span>
+                    <span class="tag">孙悟空</span>
+                    <span class="tag">神话</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 灯箱效果 -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImage" alt="">
+        <div id="lightboxCaption"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery-compatible.css') }}">
+<script src="{{ url_for('static', filename='js/gallery-compatible.js') }}"></script>
+<script>
+    // 搜索功能初始化
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('gallerySearch');
+        if (searchInput && window.galleryCompatible) {
+            searchInput.addEventListener('input', 
+                window.galleryCompatible.debounce((e) => {
+                    window.galleryCompatible.searchGallery(e.target.value);
+                }, 300)
+            );
+        }
+    });
+</script>
+{% endblock %}

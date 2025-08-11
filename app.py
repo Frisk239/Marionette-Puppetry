@@ -45,7 +45,7 @@ def ai_chat():
 
 @app.route('/gallery')
 def gallery():
-    return render_template('gallery.html')
+    return render_template('gallery-compatible.html')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
